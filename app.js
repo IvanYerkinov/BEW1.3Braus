@@ -2,12 +2,13 @@
 const bodyParser = require('body-parser');
 const express = require('express')
 const app = express()
-
-require('./controllers/events')(app, models);
+const methodOverride = require('method-override')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const models = require('./db/models');
+
+const events = require('./controllers/events')(app, models);
 
 // require handlebars
 var exphbs = require('express-handlebars');
