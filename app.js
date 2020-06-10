@@ -9,6 +9,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const models = require('./db/models');
 
 const events = require('./controllers/events')(app, models);
+require('./controllers/rsvps')(app, models);
+
 
 // require handlebars
 var exphbs = require('express-handlebars');
