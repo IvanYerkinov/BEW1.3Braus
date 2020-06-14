@@ -3,6 +3,11 @@ module.exports = function (app, models) {
     // INDEX
     app.get('/', (req, res) => {
         models.Event.findAll({ order: [['createdAt', 'DESC']] }).then(events => {
+            if (req.header('Content-Type') == 'application/json') {
+                return res.json({events});
+            } else {
+                return res.render('events-index', { events: events });
+    }
             res.render('events-index', { events: events });
         })
     })
